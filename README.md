@@ -65,6 +65,22 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project-id.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
 ```
 
+## 🏗️ Architecture
+
+### Server / Client Component Split
+
+- **Server Components** (`CourseGrid.tsx`): Fetches course data from Supabase at request time. No API routes needed — data flows directly from the DB to the rendered HTML.
+- **Client Components** (everything with `"use client"`): All Framer Motion animations, interactive sidebar, and stateful UI live client-side.
+- **Suspense boundaries**: `CourseGrid` is wrapped in `<Suspense>` with a `CourseSkeleton` fallback, so the page shell renders immediately and courses stream in.
+
+### Key Decisions
+
+- **No layout shifts**: All animations use `transform` and `opacity` only — never `height`, `width`, or `margin`.
+- **Spring physics**: Hover states use `type: "spring", stiffness: 300, damping: 20` for natural feel.
+- **`layoutId` for sidebar**: Active nav indicator slides between items using Framer Motion's layout animation system.
+- **Dynamic icon rendering**: Course icons are stored as strings (e.g., `"Code2"`) and resolved to Lucide components at runtime.
+
+
 ### 5. Run the development server
 
 ```bash
