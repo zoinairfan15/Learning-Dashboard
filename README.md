@@ -75,3 +75,13 @@ Open [http://localhost:3000](http://localhost:3000) — it will redirect to `/da
 
 ---
 
+## 🚢 Deployment (Vercel)
+
+1. Push your code to a public GitHub repo
+2. Go to [vercel.com](https://vercel.com) → **New Project** → import your repo
+3. In the Vercel dashboard, go to **Settings → Environment Variables** and add:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Click **Deploy**
+
+> ⚠️ Never commit your `.env.local` file. It's in `.gitignore` by default.
